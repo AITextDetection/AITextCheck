@@ -11,7 +11,8 @@ args = parser.parse_args()
 if args.train:
     train()
 elif args.predict:
-    detector = AITextDetector("models/bert_finetuned", "bert-base-uncased")
-    print(detector.predict(args.predict))
+    detector = AITextDetector("models/distilbert_finetuned", "distilbert-base-uncased")
+    score = detector.predict(args.predict)
+    print(f"AI-generated confidence: {score:.4f}")
 
     

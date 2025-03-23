@@ -1,7 +1,8 @@
-model_name: "bert-base-uncased"
+model_name: "distilbert-base-uncased"
 max_length: 256
 batch_size: 32
 epochs: 3
 learning_rate: 4e-5
 train_data: "data/train.csv"
 test_data: "data/test.csv"
+tokenized_save_path: "data/tokenized_data"
