@@ -1,7 +1,7 @@
 model_name: "bert-base-uncased"
-max_length: 512
-batch_size: 2
+max_length: 256
+batch_size: 32
 epochs: 3
-learning_rate: 2e-5
+learning_rate: 4e-5
 train_data: "data/train.csv"
 test_data: "data/test.csv"
