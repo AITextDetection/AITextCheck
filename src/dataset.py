@@ -4,7 +4,7 @@ from transformers import DistilBertTokenizer
 
 class TextDataset:
     def __init__(self, data_path, tokenizer_name, max_length, save_path=None, load_cached=False):
-        self.tokenizer = DistilBertTokenizer.from_pretrained(tokenizer_name)
+        self.tokenizer = DistilBertTokenizer.from_pretrained(tokenizer_name, use_fast=True)
         self.max_length = max_length
 
         if load_cached and save_path:
@@ -12,13 +12,16 @@ class TextDataset:
             self.dataset = Dataset.load_from_disk(save_path)  # Load cached dataset
         else:
             print("Tokenizing dataset...")
-            self.data = pd.read_csv(data_path)
+            self.data = pd.read_csv(
+                data_path, 
+                usecols=["text", "generated"],  # Load only required columns
+                dtype={"generated": int}  # Optimize memory usage
+            )
             self.data.rename(columns={"generated": "label"}, inplace=True)
             self.data["label"] = self.data["label"].astype(int)
 
-            raw_dataset = Dataset.from_pandas(self.data)
-            self.dataset = raw_dataset.map(self.tokenize_function, batched=True)
-
+            raw_dataset = Dataset.from_dict({"text": self.data["text"].tolist(), "label": self.data["label"].tolist()})
+            self.dataset = raw_dataset.map(self.tokenize_function, batched=True, batch_size=4096, num_proc=4)
             if save_path:
                 print(f"Saving pre-tokenized dataset to {save_path}")
                 self.dataset.save_to_disk(save_path)  # Save tokenized dataset
