@@ -6,6 +6,12 @@ from transformers import BertTokenizer
 class TextDataset:
     def __init__(self, data_path, tokenizer_name, max_length):
         self.data = pd.read_csv(data_path)
+
+        # Rename "generated" column to "label"
+        self.data.rename(columns={"generated": "label"}, inplace=True)
+        # Ensure labels are 0 or 1 (if needed)
+        self.data["label"] = self.data["label"].astype(int)
+        
         self.tokenizer = BertTokenizer.from_pretrained(tokenizer_name)
         self.max_length = max_length
 
