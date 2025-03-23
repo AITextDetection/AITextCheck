@@ -1,6 +1,6 @@
 model_name: "distilbert-base-uncased"
 max_length: 256
-batch_size: 32
+batch_size: 128
 epochs: 3
 learning_rate: 4e-5
 train_data: "data/train.csv"

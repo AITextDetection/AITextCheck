@@ -22,7 +22,7 @@ def train():
         per_device_train_batch_size=config["batch_size"],
         num_train_epochs=config["epochs"],
         learning_rate=float(config["learning_rate"]),
-        fp16=False,  # Enable mixed precision for faster training
+        fp16=True,  # Enable mixed precision for faster training
         save_total_limit=1,  # Keep only the latest checkpoint
         logging_steps=100
     )
