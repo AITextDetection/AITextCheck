@@ -12,6 +12,7 @@ def train():
         config["train_data"], config["model_name"], config["max_length"],
         save_path=config["tokenized_save_path"], load_cached=True
     ).get_dataset()
+    print(f"Dataset size: {len(train_data)}")  # Check how many examples are actually loaded
 
     # Load DistilBERT model (smaller & faster)
     model = DistilBertForSequenceClassification.from_pretrained(config["model_name"], num_labels=2)
@@ -22,7 +23,7 @@ def train():
         per_device_train_batch_size=config["batch_size"],
         num_train_epochs=config["epochs"],
         learning_rate=float(config["learning_rate"]),
-        fp16=True,  # Enable mixed precision for faster training
+        fp16=False,  # Enable mixed precision for faster training
         save_total_limit=1,  # Keep only the latest checkpoint
         logging_steps=100
     )
