@@ -7,6 +7,8 @@ with open("config.yaml", "r") as f:
 
 # Pre-tokenize and save dataset
 dataset = TextDataset(
-    config["train_data"], config["model_name"], config["max_length"], 
-    save_path=config["tokenized_save_path"]
+    config["train_data"],
+    config["model_name"],
+    config["max_length"],
+    save_path=config["tokenized_save_path"],
 )

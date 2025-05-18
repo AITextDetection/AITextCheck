@@ -3,6 +3,15 @@ max_length: 256
 batch_size: 128
 epochs: 3
 learning_rate: 4e-5
+
 train_data: "data/train.csv"
 test_data: "data/test.csv"
 tokenized_save_path: "data/tokenized_data"
+load_cached: true
+
+output_dir: "models/distilbert_finetuned"
+model_save_path: "models/distilbert_finetuned"
+fp16: false
+save_total_limit: 1
+logging_steps: 100
+batch_tokenize_size: 1000
