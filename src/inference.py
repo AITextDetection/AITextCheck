@@ -14,7 +14,7 @@ class AITextDetector:
 
     def predict(self, text):
         # Tokenize and move to correct device
-        print("Getting the inputs")
+        print("Predicting the input")
 
         inputs = self.tokenizer(
             text, return_tensors="pt", padding=True, truncation=True, max_length=256

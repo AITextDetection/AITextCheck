@@ -5,4 +5,5 @@ models/
 data/
 OldData/
 saved_model/
-
+analysis_outputs/
+logs/

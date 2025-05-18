@@ -3,7 +3,7 @@ import yaml
 from src.dataset import TextDataset
 
 
-def tokenize():
+def tokenize_data():
     # Load config
     with open("config.yaml", "r") as f:
         config = yaml.safe_load(f)
@@ -18,4 +18,4 @@ def tokenize():
 
 
 if __name__ == "__main__":
-    tokenize()
+    tokenize_data()
