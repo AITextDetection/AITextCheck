@@ -10,7 +10,7 @@ class TextDataset:
 
         if load_cached and save_path:
             print(f"Loading pre-tokenized dataset from {save_path}")
-            dataset = Dataset.load_from_disk(save_path)
+            self.dataset = Dataset.load_from_disk(save_path)
             self.train_dataset = dataset["train"]
             self.test_dataset = dataset["test"]
         else:
