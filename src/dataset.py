@@ -31,6 +31,7 @@ class TextDataset:
             self.train_dataset = ds_train.map(self.tokenize_function, batched=True)
             self.test_dataset = ds_test.map(self.tokenize_function, batched=True)
 
+            # Save tokenized dataset
             if save_path:
                 print(f"Saving pre-tokenized datasets to {save_path}")
                 DatasetDict(
