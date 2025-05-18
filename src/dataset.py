@@ -1,6 +1,7 @@
 from datasets import load_dataset, Dataset
 from transformers import DistilBertTokenizer
 from datasets import load_dataset, Dataset, DatasetDict
+from datasets import load_from_disk
 
 
 class TextDataset:
@@ -10,7 +11,7 @@ class TextDataset:
 
         if load_cached and save_path:
             print(f"Loading pre-tokenized dataset from {save_path}")
-            self.dataset = Dataset.load_from_disk(save_path)
+            dataset = load_from_disk(save_path)  # <-- correct function
             self.train_dataset = dataset["train"]
             self.test_dataset = dataset["test"]
         else:
