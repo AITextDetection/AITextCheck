@@ -15,3 +15,4 @@ fp16: false
 save_total_limit: 1
 logging_steps: 100
 batch_tokenize_size: 1000
+dataloader_num_workers: 8, 

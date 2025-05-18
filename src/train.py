@@ -43,6 +43,7 @@ def train():
         evaluation_strategy="epoch",  # <-- Run eval each epoch
         save_strategy="epoch",  # <-- Save checkpoint each epoch
         logging_dir="./logs",  # <-- TensorBoard logs
+        dataloader_num_workers=config["dataloader_num_workers"],
     )
 
     trainer = Trainer(
