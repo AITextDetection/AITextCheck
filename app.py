@@ -11,7 +11,9 @@ from src.inference import AITextDetector
 app = FastAPI()
 
 # Allowed origins (frontend URL, '*' for all)
-origins = ["*"]  # Change this to specific domains if needed, e.g., ["http://localhost:3000"]
+origins = [
+    "*"
+]  # Change this to specific domains if needed, e.g., ["http://localhost:3000"]
 
 app.add_middleware(
     CORSMiddleware,
@@ -23,10 +25,14 @@ app.add_middleware(
 
 
 # Load model and tokenizer
-detector = AITextDetector(model_path="models/distilbert_finetuned", tokenizer_name="distilbert-base-uncased")
+detector = AITextDetector(
+    model_path="models/distilbert_finetuned", tokenizer_name="distilbert-base-uncased"
+)
+
 
 class InputText(BaseModel):
     text: str
+
 
 @app.post("/predict")
 def predict(data: InputText):
@@ -35,6 +41,7 @@ def predict(data: InputText):
     score *= 100
     score = round(score, 2)
     return {"score": score}
+
 
 # Root endpoint for health check
 @app.get("/")
